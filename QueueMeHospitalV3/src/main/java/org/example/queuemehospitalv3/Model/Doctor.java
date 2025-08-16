@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -31,4 +33,8 @@ public class Doctor {
     @ManyToOne
     @JsonIgnore
     private Department department;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
+    @PrimaryKeyJoinColumn
+    private List<Scheduler> scheduler;
 }

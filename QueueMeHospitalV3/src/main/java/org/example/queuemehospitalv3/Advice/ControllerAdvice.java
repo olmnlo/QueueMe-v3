@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -54,5 +55,10 @@ public class ControllerAdvice {
     @ExceptionHandler(value = UnexpectedTypeException.class)
     public ResponseEntity<ApiResponse> UnexpectedTypeException (UnexpectedTypeException unexpectedTypeException){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(unexpectedTypeException.getMessage()));
+    }
+
+    @ExceptionHandler(value = JpaSystemException.class)
+    public ResponseEntity<ApiResponse> JpaSystemException(JpaSystemException jpaSystemException){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(jpaSystemException.getMessage()));
     }
 }

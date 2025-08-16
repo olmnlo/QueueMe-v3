@@ -5,10 +5,12 @@ import org.example.queuemehospitalv3.Api.ApiException;
 import org.example.queuemehospitalv3.DTO.DoctorDTO;
 import org.example.queuemehospitalv3.Model.Department;
 import org.example.queuemehospitalv3.Model.Doctor;
+import org.example.queuemehospitalv3.Model.Scheduler;
 import org.example.queuemehospitalv3.Repository.DepartmentRepository;
 import org.example.queuemehospitalv3.Repository.DoctorRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,7 +35,7 @@ public class DoctorService {
         if (department == null){
             throw new ApiException("department not found");
         }
-        Doctor doctor = new Doctor(null,doctorDTO.getName(),doctorDTO.getSpecialization(),false,department);
+        Doctor doctor = new Doctor(null,doctorDTO.getName(),doctorDTO.getSpecialization(),false,department, null);
         department.getDoctors().add(doctor);
         departmentRepository.save(department);
     }
