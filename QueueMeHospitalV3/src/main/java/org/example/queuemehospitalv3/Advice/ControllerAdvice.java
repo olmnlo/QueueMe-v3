@@ -1,5 +1,6 @@
 package org.example.queuemehospitalv3.Advice;
 
+import jakarta.validation.UnexpectedTypeException;
 import org.example.queuemehospitalv3.Api.ApiException;
 import org.example.queuemehospitalv3.Api.ApiResponse;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -48,5 +49,10 @@ public class ControllerAdvice {
     @ExceptionHandler(value = TransactionSystemException.class)
     public ResponseEntity<ApiResponse> TransactionSystemException (TransactionSystemException transactionSystemException){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(transactionSystemException.getMessage()));
+    }
+
+    @ExceptionHandler(value = UnexpectedTypeException.class)
+    public ResponseEntity<ApiResponse> UnexpectedTypeException (UnexpectedTypeException unexpectedTypeException){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(unexpectedTypeException.getMessage()));
     }
 }

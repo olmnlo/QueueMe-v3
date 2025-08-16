@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -24,6 +27,9 @@ public class Department {
 
     @Column(columnDefinition = "TEXT NOT NULL")
     private String description;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
+    private List<Doctor> doctors = new ArrayList<>();
 
     @ManyToOne
     @JsonIgnore

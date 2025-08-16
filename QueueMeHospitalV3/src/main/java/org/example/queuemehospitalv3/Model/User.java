@@ -59,14 +59,4 @@ public class User {
     @DecimalMax(value = "180.0", message = "longitude must be <= 180")
     private Double longitude;
 
-    @Size(max = 20, message = "role max length 20")
-    @Pattern(regexp = "^(user)$", message = "role must be eather user or admin")
-    @Column(columnDefinition = "varchar(20) not null")
-    private String role = "user";
-
-
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-    @PrimaryKeyJoinColumn
-    private Admin admin;
 }

@@ -1,6 +1,8 @@
 package org.example.queuemehospitalv3.DTO;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +22,7 @@ public class DepartmentDTO {
     @NotEmpty(message = "description is required")
     private String description;
 
+    @NotNull(message = "hospital id is required")
+    @Positive(message = "hospital id must be positive")
     private Integer hospitalId;
 }
