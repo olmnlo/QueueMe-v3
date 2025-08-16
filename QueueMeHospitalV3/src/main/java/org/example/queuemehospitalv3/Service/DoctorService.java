@@ -35,7 +35,7 @@ public class DoctorService {
         if (department == null){
             throw new ApiException("department not found");
         }
-        Doctor doctor = new Doctor(null,doctorDTO.getName(),doctorDTO.getSpecialization(),false,department, null);
+        Doctor doctor = new Doctor(null,doctorDTO.getName(),doctorDTO.getSpecialization(),false,department, null, null);
         department.getDoctors().add(doctor);
         departmentRepository.save(department);
     }
@@ -68,12 +68,10 @@ public class DoctorService {
         if (department == null){
             throw new ApiException("department not found");
         }
-
         doctor.setDepartment(null);
         doctorRepository.delete(doctor);
         department.getDoctors().remove(doctor);
         departmentRepository.save(department);
-
     }
 
 }

@@ -25,7 +25,7 @@ public class Scheduler {
 
     @FutureOrPresent(message = "date must be future or present")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column(columnDefinition = "date unique")
+    @Column(columnDefinition = "date")
     private LocalDate availableDay;
 
     @NotNull(message = "doctor id is required")

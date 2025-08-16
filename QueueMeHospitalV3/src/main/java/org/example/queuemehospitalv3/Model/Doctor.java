@@ -37,4 +37,8 @@ public class Doctor {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
     @PrimaryKeyJoinColumn
     private List<Scheduler> scheduler;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
+    @PrimaryKeyJoinColumn
+    private List<Appointment> appointments;
 }

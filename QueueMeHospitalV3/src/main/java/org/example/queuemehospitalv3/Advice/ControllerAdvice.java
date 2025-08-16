@@ -4,6 +4,7 @@ import jakarta.validation.UnexpectedTypeException;
 import org.example.queuemehospitalv3.Api.ApiException;
 import org.example.queuemehospitalv3.Api.ApiResponse;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -60,5 +61,10 @@ public class ControllerAdvice {
     @ExceptionHandler(value = JpaSystemException.class)
     public ResponseEntity<ApiResponse> JpaSystemException(JpaSystemException jpaSystemException){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(jpaSystemException.getMessage()));
+    }
+
+    @ExceptionHandler(value = InvalidDataAccessResourceUsageException.class)
+    public ResponseEntity<ApiResponse> InvalidDataAccessResourceUsageException (InvalidDataAccessResourceUsageException invalidDataAccessResourceUsageException){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(invalidDataAccessResourceUsageException.getMessage()));
     }
 }

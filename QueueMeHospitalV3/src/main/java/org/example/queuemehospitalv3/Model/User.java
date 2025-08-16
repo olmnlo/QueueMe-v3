@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -58,5 +60,9 @@ public class User {
     @DecimalMin(value = "-180.0", message = "longitude must be >= -180")
     @DecimalMax(value = "180.0", message = "longitude must be <= 180")
     private Double longitude;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Appointment> appointment;
 
 }
